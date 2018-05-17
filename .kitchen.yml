@@ -1,6 +1,8 @@
 ---
 driver:
   name: vagrant
+  network: 
+  - ["forwarded_port", {guest: 8080, host: 8080}]
 
 provisioner:
   name: chef_zero
@@ -14,8 +16,6 @@ verifier:
 
 platforms:
   - name: ubuntu-16.04
-  - name: centos-7
-
 suites:
   - name: default
     run_list:
@@ -23,4 +23,4 @@ suites:
     verifier:
       inspec_tests:
         - test/integration/default
-    attributes:
+    attributes: {app_name: "baritoMarket", market_script_location: "/opt/baritoMarket/baritoMarket/run.sh",command_name: "rails server -p 8080"}
