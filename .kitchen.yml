@@ -1,26 +1,32 @@
 ---
 driver:
   name: vagrant
-  network: 
+  product_version: 14.1.1
+  network:
   - ["forwarded_port", {guest: 8080, host: 8080}]
 
 provisioner:
   name: chef_zero
-  # You may wish to disable always updating cookbooks in CI or other testing environments.
-  # For example:
-  #   always_update_cookbooks: <%= !ENV['CI'] %>
-  always_update_cookbooks: true
+  nodes_path: 'test/fixtures/nodes'
+  environments_path: 'test/fixtures/environments'
+  data_bags_path: 'test/fixtures/data_bags'
+  client_rb:
+    environment: _default
 
 verifier:
   name: inspec
 
 platforms:
   - name: ubuntu-16.04
+
 suites:
   - name: default
     run_list:
-      - recipe[BaritoMarketCookbook::default]
+      - recipe[barito_market::default]
     verifier:
       inspec_tests:
-        - test/integration/default
-    attributes: {app_name: "baritoMarket", market_script_location: "/opt/baritoMarket/baritoMarket/run.sh",command_name: "rails server -p 8080"}
+        - test/unit/spec
+    attributes:
+      app_name: "baritoMarket"
+      market_script_location: "/opt/baritoMarket/baritoMarket/run.sh"
+      command_name: "rails server -p 8080"
