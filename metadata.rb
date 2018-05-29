@@ -10,6 +10,6 @@ chef_version '>= 14.1.1' if respond_to?(:chef_version)
 issues_url 'https://github.com/BaritoLog/barito-market-cookbook/issues'
 source_url 'https://github.com/BaritoLog/barito-market-cookbook'
 
-depends 'base_cookbook'
+depends 'foundation'
 depends 'zipfile'
 depends 'tar'
