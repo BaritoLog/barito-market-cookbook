@@ -2,6 +2,9 @@ include_recipe 'barito_market::_puma'
 app_name = node['app_name']
 version = node['postgresql']['version']
 env = node[app_name]['environment_variables']
+puts '*' * 100
+puts 'env variables'
+env['rack_env'] ||= 'production'
 
 barito_market_server_install "Postgresql #{version} Server Install" do
   version            version
@@ -37,14 +40,23 @@ barito_market_access "Configuring Access" do
   access_method 'password'
 end
 
-barito_market_database env['db_name'] do
-  database env['db_name']
-  user 'postgres'
-end
-
 barito_market_pg_gem 'Install PG Gem' do
   client_version version
-  #clear_sources true
-  #include_default_source true
   version '1.0.0'
+end
+
+# Run rake db:create RAILS_ENV=production
+execute "rake db:create" do
+  command "bundle exec rake db:create"
+  environment 'RAILS_ENV' => env['rack_env']
+end
+
+execute "rake db:migrate" do
+  command "bundle exec rake db:migrate"
+  environment 'RAILS_ENV' => env['rack_env']
+end
+
+execute "rake db:seed" do
+  command "bundle exec rake db:seed"
+  environment 'RAILS_ENV' => env['rack_env']
 end

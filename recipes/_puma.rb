@@ -4,6 +4,7 @@ command_name = node['command_name']
 github_repo = 'BaritoLog/BaritoMarket'
 release_name = Github.release_name(github_repo)
 release_file = Github.release_file(github_repo)
+env = node[app_name]['environment_variables']
 
 apt_repository 'brightbox-ruby' do
   uri 'ppa:brightbox/ruby-ng'
@@ -77,6 +78,14 @@ template "/etc/puma/#{app_name}.rb" do
   group app_name
   variables( app_name: app_name, app_home: app_name )
   mode "400"
+end
+
+template "/opt/#{app_name}/#{app_name}/config/application.yml" do
+  source 'barito_market_application_yml.erb'
+  mode '0644'
+  owner app_name
+  group app_name
+  variables(env)
 end
 
 template market_script_location do

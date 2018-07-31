@@ -1,0 +1,18 @@
+DB_USER:                     '<%= @db_username || 'barito_market' %>'
+DB_HOST:                     '<%= @db_host || 'localhost' %>'
+DB_PASSWORD:                 '<%= @db_password || 'barito_market' %>'
+DB_POOL:                     '<%= @db_pool || 5 %>'
+DB_TIMEOUT:                  '<%= @db_timeoute || 5000 %>'
+CAS_BASE_URL:                '<%= @cas_base_url %>'
+PROVISION_AVAILABLE_INSTANCES:    '<%= @provision_available_instances || 'yggdrasil,consul,zookeeper,kafka,elasticsearch,barito-flow-producer,barito-flow-consumer,kibana' %>'
+APP_GROUPS:                  '<%= @app_groups || 'barito' %>'
+RECEIVER_END_POINT:          'http://dummy.end-point/'
+GATE_ACCESS_TOKEN:           '<%= @gate_access_token %>'
+GATE_URL:                     '<%= @gate_url %>'
+
+<%= @rack_env %>:
+  RAILS_ENV:                 '<%= @rack_env %>'
+  RACK_ENV:                  '<%= @rack_env %>'
+  DB_NAME:                   'barito_market_<%= @rack_env %>'
+  ENABLE_CAS_INTEGRATION:    'true'
+  TIMESTAMP_FORMAT:           '%d-%m-%Y %H:%M'
