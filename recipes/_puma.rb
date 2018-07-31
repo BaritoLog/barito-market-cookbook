@@ -88,6 +88,12 @@ template "/opt/#{app_name}/#{app_name}/config/application.yml" do
   variables(env)
 end
 
+file "/opt/#{app_name}/#{app_name}/log/#{env['rack_env']}.log" do
+  mode '0644'
+  owner app_name
+  group app_name
+end
+
 template market_script_location do
   source "market_script.sh.erb"
   mode   "0755"
