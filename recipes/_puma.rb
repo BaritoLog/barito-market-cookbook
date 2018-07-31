@@ -94,10 +94,11 @@ template market_script_location do
   owner app_name
   group app_name
   variables(
-            app_name: app_name,
-            app_home: app_name,
-            command_name: command_name
-           )
+    app_name: app_name,
+    app_home: app_name,
+    command_name: command_name,
+    rack_env: env['rack_env']
+  )
   notifies :restart, "service[puma]", :delayed
 end
 

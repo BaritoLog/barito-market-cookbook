@@ -41,18 +41,3 @@ barito_market_pg_gem 'Install PG Gem' do
   client_version version
   version '1.0.0'
 end
-
-execute "rake db:create" do
-  command "bundle exec rake db:create"
-  environment 'RAILS_ENV' => env['rack_env']
-end
-
-execute "rake db:migrate" do
-  command "bundle exec rake db:migrate"
-  environment 'RAILS_ENV' => env['rack_env']
-end
-
-execute "rake db:seed" do
-  command "bundle exec rake db:seed"
-  environment 'RAILS_ENV' => env['rack_env']
-end

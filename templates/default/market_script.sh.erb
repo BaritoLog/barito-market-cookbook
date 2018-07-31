@@ -1,5 +1,8 @@
 #!/bin/sh -
 export TZ=Asia/Jakarta
 cd /opt/<%= @app_name %>/<%= @app_name %>
+RAILS_ENV=<%= @rack_env %> rake db:create
+RAILS_ENV=<%= @rack_env %> rake db:migrate
+RAILS_ENV=<%= @rack_env %> rake db:seed
 bundle install --local --path .local
 bundle exec <%= @command_name %>
