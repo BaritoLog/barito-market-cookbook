@@ -21,15 +21,14 @@ gem_package 'bundler'
 
 group app_name do
   action :create
-  gid 2000
+  system true
 end
 
 user app_name do
   comment 'BaritoMarket user'
-  uid 2000
-  gid 2000
   home "/opt/#{app_name}"
   manage_home true
+  system true
   shell '/bin/bash'
   action :create
 end
