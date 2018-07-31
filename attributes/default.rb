@@ -27,4 +27,5 @@ default[normal['app_name']]['environment_variables'] = {
   'db_password' => '123456',
   'db_root_password' => '123456',
   'db_port' => 5432
+  'rack_env' => 'production'
 }
