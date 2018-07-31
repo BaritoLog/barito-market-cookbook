@@ -26,6 +26,6 @@ default[normal['app_name']]['environment_variables'] = {
   'db_name' => 'barito_market_production',
   'db_password' => '123456',
   'db_root_password' => '123456',
-  'db_port' => 5432
+  'db_port' => 5432,
   'rack_env' => 'production'
 }
