@@ -17,7 +17,8 @@ template "/etc/puma/#{app_name}.rb" do
   owner user
   group group
   variables directory: "#{install_directory}/BaritoMarket",
-            environment: node[cookbook_name]['env']
-            
+            environment: node[cookbook_name]['env'],
+            pidfile_path: "#{cookbook_name}/BaritoMarket",
+            state_path: "#{cookbook_name}/BaritoMarket"
   mode "400"
 end

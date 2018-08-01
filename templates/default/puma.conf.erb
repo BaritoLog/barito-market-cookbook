@@ -1,9 +1,10 @@
 #!/usr/bin/env puma
 
 directory '<%= @directory %>'
+rackup '<%= @directory %>/config.ru'
 environment '<%= @environment %>'
-pidfile '/var/run/<%= @app_name %>/<%= @app_name %>.pid'
-state_path '/var/run/<%= @app_name %>/<%= @app_name %>_puma.state'
+pidfile '/var/run/<%= @pidfile_path %>.pid'
+state_path '/var/run/<%= @state_path %>_puma.state'
 threads 1, 16
 
 bind 'tcp://0.0.0.0:8080'
