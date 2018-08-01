@@ -4,8 +4,6 @@ env = node[cookbook_name]['env']
 install_directory = node[cookbook_name]['install_directory']
 
 execute 'run bundle install' do
-  user user
-  group group
   command 'bundle install'
   cwd "#{install_directory}/BaritoMarket"
 end
