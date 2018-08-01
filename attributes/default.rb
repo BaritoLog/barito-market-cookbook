@@ -27,12 +27,18 @@ default['postgresql']['config'] = {
   'max_connections' => 1000
 }
 
-default[normal['app_name']]['environment_variables'] = {
+default[cookbook_name]['environment_variables'] = {
   'db_username' => 'barito_market',
   'db_name' => 'barito_market_production',
   'db_password' => '123456',
   'db_root_password' => '123456',
   'db_port' => 5432,
+  'db_host' => 'localhost',
+  'db_pool' => 5,
+  'db_timeout' => 5000,
   'rack_env' => default[cookbook_name]['env'],
+  'enable_cas_integration' => true,
+  'provision_available_instances' => 'yggdrasil,consul,zookeeper,kafka,elasticsearch,barito-flow-producer,barito-flow-consumer,kibana',
+  'app_groups' => 'barito',
   'secret_key_base' => '123456'
 }

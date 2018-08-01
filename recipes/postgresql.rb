@@ -24,6 +24,10 @@ end
 barito_market_user "Adding user to Postgres Installation" do
   user env['db_username']
   password env['db_password']
+  superuser true
+  createdb true
+  createrole true
+  login true
   action :create
 end
 
@@ -36,10 +40,10 @@ barito_market_access "Configuring Access" do
   access_method 'password'
 end
 
-barito_market_database env['db_name'] do
-  database env['db_name']
-  user 'postgres'
-end
+# barito_market_database env['db_name'] do
+  # database env['db_name']
+  # user 'postgres'
+# end
 
 barito_market_pg_gem 'Install PG Gem' do
   client_version version

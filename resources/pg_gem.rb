@@ -1,4 +1,4 @@
-property :client_version, String, default: '9.6'
+property :client_version, String, default: '10'
 # gem options
 property :version, [String, nil], default: '0.21.0'
 property :clear_sources, [true, false]
@@ -11,7 +11,7 @@ property :source, String
 action :install do
   package %W[
     libpq5 libpq-dev postgresql-client-#{new_resource.client_version}
-    libgmp-dev
+    libgmp-dev postgresql-#{new_resource.client_version}
   ]
   build_essential 'essentially essential' do
     compile_time true
