@@ -14,3 +14,5 @@ package %w[
 ]
 
 gem_package 'bundler'
+
+puma_install
