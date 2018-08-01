@@ -3,7 +3,7 @@ group node[cookbook_name]['group'] do
 end
 
 user node[cookbook_name]['user'] do
-  comment "#{app_name} user"
+  comment "#{node[cookbook_name]['user']} user"
   group node[cookbook_name]['group']
   system true
   shell '/sbin/nologin'

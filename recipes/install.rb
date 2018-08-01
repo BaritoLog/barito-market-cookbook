@@ -1,7 +1,6 @@
-app_name = node['app_name']
-github_repo = 'BaritoLog/BaritoMarket'
-release_name = Github.release_name(github_repo)
-release_file = Github.release_file(github_repo)
+app_name = cookbook_name
+release_name = node[cookbook_name]['release_name']
+release_file = node[cookbook_name]['release_file']
 
 apt_repository 'brightbox-ruby' do
   uri 'ppa:brightbox/ruby-ng'
@@ -16,25 +15,4 @@ package %w[
 
 gem_package 'bundler'
 
-directory "/opt/#{app_name}/#{release_name}" do
-  owner app_name
-  group app_name
-  recursive true
-  action :create
-end
-
-tar_extract release_file  do
-  target_dir "/opt/#{app_name}/#{release_name}"
-  download_dir "/opt/#{app_name}"
-  creates "#{release_name}/Gemfile"
-  user app_name
-  group app_name
-end
-
-link "/opt/#{app_name}/#{app_name}"  do
-  to "/opt/#{app_name}/#{release_name}"
-  action :create
-  user app_name
-  group app_name
-end
-
+puma_install

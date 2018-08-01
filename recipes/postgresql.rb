@@ -1,6 +1,6 @@
-app_name = node['app_name']
+app_name = cookbook_name
 version = node['postgresql']['version']
-env = node[app_name]['environment_variables']
+env = node[cookbook_name]['environment_variables']
 
 barito_market_server_install "Postgresql #{version} Server Install" do
   version            version

@@ -1,11 +1,13 @@
-#override['postgresql']['client']['packages'] = ["postgresql-client-#{node['postgresql']['version']}","libpq-dev"]
-#override['postgresql']['server']['packages'] = ["postgresql-#{node['postgresql']['version']}"]
-#override['postgresql']['contrib']['packages'] = ["postgresql-contrib-#{node['postgresql']['version']}"]
-
 cookbook_name = 'barito_market'
 
 default[cookbook_name]['user'] = cookbook_name
 default[cookbook_name]['group'] = cookbook_name
+default[cookbook_name]['github_repo'] = 'BaritoLog/BaritoMarket'
+default[cookbook_name]['release_name'] = Github.release_name(default[cookbook_name]['github_repo'])
+default[cookbook_name]['release_file'] = Github.release_file(default[cookbook_name]['github_repo'])
+default[cookbook_name]['barito_market_directory'] = "/opt/#{cookbook_name}/#{release_name}"
+default[cookbook_name]['install_directory'] = "/opt/#{cookbook_name}"
+default[cookbook_name]['env'] = 'production'
 
 default['postgresql']['version'] = '10'
 default['postgresql']['config_dir'] = "/etc/postgresql/#{node['postgresql']['version']}/main"
@@ -32,6 +34,6 @@ default[normal['app_name']]['environment_variables'] = {
   'db_password' => '123456',
   'db_root_password' => '123456',
   'db_port' => 5432,
-  'rack_env' => 'production',
+  'rack_env' => default[cookbook_name]['env'],
   'secret_key_base' => '123456'
 }

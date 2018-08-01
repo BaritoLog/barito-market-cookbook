@@ -1,23 +1,64 @@
-app_name = node['app_name']
-github_repo = 'BaritoLog/BaritoMarket'
-release_name = Github.release_name(github_repo)
-release_file = Github.release_file(github_repo)
+app_name = cookbook_name
+release_name = node[cookbook_name]['release_name']
+release_file = node[cookbook_name]['release_file']
 env = node[app_name]['environment_variables']
+barito_market_directory = node[cookbook_name]['barito_market_directory']
+install_directory = node[cookbook_name]['install_directory']
 
-directory "/etc/puma" do
-  owner 'root'
-  group 'root'
-  recursive true
-  action :create
-end
-
-directory "/var/run/#{app_name}" do
+directory barito_market_directory do
   owner app_name
   group app_name
-  mode 0755
   recursive true
   action :create
 end
+
+tar_extract release_file  do
+  target_dir barito_market_directory
+  download_dir install_directory
+  creates "#{release_name}/Gemfile"
+  user app_name
+  group app_name
+end
+
+link "#{install_directory}/#{app_name}"  do
+  to barito_market_directory
+  action :create
+  user app_name
+  group app_name
+end
+
+template "#{barito_market_directory}/config/application.yml" do
+  source 'barito_market_application_yml.erb'
+  mode '0644'
+  owner app_name
+  group app_name
+  variables(env)
+end
+
+puma_config app_name do
+  directory "#{barito_market_directory}/config.ru"
+  environment node[cookbook_name]['env']
+  monit false
+  logrotate false
+  thread_min 1
+  thread_max 16
+  workers 2
+end
+
+# directory "/etc/puma" do
+  # owner 'root'
+  # group 'root'
+  # recursive true
+  # action :create
+# end
+
+# directory "/var/run/#{app_name}" do
+  # owner app_name
+  # group app_name
+  # mode 0755
+  # recursive true
+  # action :create
+# end
 
 # template "/etc/puma/#{app_name}.rb" do
   # source "puma.conf.erb"
@@ -27,13 +68,6 @@ end
   # mode "400"
 # end
 
-template "/opt/#{app_name}/#{app_name}/config/application.yml" do
-  source 'barito_market_application_yml.erb'
-  mode '0644'
-  owner app_name
-  group app_name
-  variables(env)
-end
 
 # file "/opt/#{app_name}/#{app_name}/log/#{env['rack_env']}.log" do
   # mode '0644'
