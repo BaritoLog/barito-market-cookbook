@@ -28,12 +28,12 @@ template "#{install_directory}/config/application.yml" do
   variables(env)
 end
 
-puma_config app_name do
-  directory "#{install_directory}/config.ru"
-  environment node[cookbook_name]['env']
-  monit false
-  logrotate false
-  thread_min 1
-  thread_max 16
-  workers 2
-end
+# puma_config app_name do
+  # directory "#{install_directory}/config.ru"
+  # environment node[cookbook_name]['env']
+  # monit false
+  # logrotate false
+  # thread_min 1
+  # thread_max 16
+  # workers 2
+# end
