@@ -12,3 +12,4 @@ source_url 'https://github.com/BaritoLog/barito-market-cookbook'
 
 depends 'zipfile'
 depends 'tar'
+depends 'puma'
