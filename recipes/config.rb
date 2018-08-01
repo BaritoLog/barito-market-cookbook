@@ -36,3 +36,10 @@ template "#{install_directory}/#{release_name}/config/application.yml" do
   group       group
   variables   env
 end
+
+execute 'copy tps_config.yml & database.yml' do
+  user user
+  group group
+  command 'cp tps_config.yml.example tps_config.yml && cp database.yml.example database.yml'
+  cwd "#{install_directory}/BaritoMarket/config"
+end
