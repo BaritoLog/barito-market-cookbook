@@ -13,7 +13,7 @@ install_directory = node[cookbook_name]['install_directory']
 # end
 
 git install_directory do
-  repository default[cookbook_name]['barito_market_repo']
+  repository node[cookbook_name]['barito_market_repo']
   destination "#{install_directory}/#{release_name}"
   reference 'master'
   enable_checkout false
