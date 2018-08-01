@@ -2,6 +2,7 @@ app_name = node['app_name']
 github_repo = 'BaritoLog/BaritoMarket'
 release_name = Github.release_name(github_repo)
 release_file = Github.release_file(github_repo)
+env = node[app_name]['environment_variables']
 
 directory "/etc/puma" do
   owner 'root'

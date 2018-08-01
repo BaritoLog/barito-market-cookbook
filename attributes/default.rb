@@ -2,6 +2,11 @@
 #override['postgresql']['server']['packages'] = ["postgresql-#{node['postgresql']['version']}"]
 #override['postgresql']['contrib']['packages'] = ["postgresql-contrib-#{node['postgresql']['version']}"]
 
+cookbook_name = 'barito_market'
+
+default[cookbook_name]['user'] = cookbook_name
+default[cookbook_name]['group'] = cookbook_name
+
 default['postgresql']['version'] = '10'
 default['postgresql']['config_dir'] = "/etc/postgresql/#{node['postgresql']['version']}/main"
 default['postgresql']['hba_file'] = "#{node['postgresql']['config_dir']}/pg_hba.conf"

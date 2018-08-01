@@ -1,15 +1,10 @@
-app_name = node['app_name']
-
-group app_name do
-  action :create
+group node[cookbook_name]['group'] do
   system true
 end
 
-user app_name do
-  comment 'BaritoMarket user'
-  home "/opt/#{app_name}"
-  manage_home true
+user node[cookbook_name]['user'] do
+  comment "#{app_name} user"
+  group node[cookbook_name]['group']
   system true
-  shell '/bin/bash'
-  action :create
+  shell '/sbin/nologin'
 end

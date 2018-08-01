@@ -1,5 +1,5 @@
-include_recipe 'barito_market::install'
 include_recipe 'barito_market::user'
+include_recipe 'barito_market::install'
 include_recipe 'barito_market::config'
 include_recipe 'barito_market::postgresql'
 # include_recipe 'barito_market::puma'
