@@ -7,7 +7,7 @@ group = node[cookbook_name]['group']
 
 directory install_directory do
   owner user
-  group user
+  group group
   recursive true
   action :create
 end
@@ -17,20 +17,22 @@ git install_directory do
   destination "#{install_directory}/#{release_name}"
   reference 'master'
   enable_checkout false
+  user user
+  group group
   action :sync
 end
 
 link "#{install_directory}/BaritoMarket"  do
   to "#{install_directory}/#{release_name}"
   action :create
-  user app_name
-  group app_name
+  user user
+  group group
 end
 
 template "#{install_directory}/#{release_name}/config/application.yml" do
   source      'barito_market_application_yml.erb'
   mode        '0644'
-  owner       app_name
-  group       app_name
+  owner       user
+  group       group
   variables   env
 end
