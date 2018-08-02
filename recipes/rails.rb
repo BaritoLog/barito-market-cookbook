@@ -14,7 +14,7 @@ execute 'setup database' do
   command "
     RAILS_ENV=#{env} bin/rake db:create && \
     RAILS_ENV=#{env} bin/rake db:migrate && \
-    RAILS_ENV=#{env} bin/rake db:seed && \
+    RAILS_ENV=#{env} bin/rake db:seed
   "
   cwd "#{install_directory}/BaritoMarket"
 end
