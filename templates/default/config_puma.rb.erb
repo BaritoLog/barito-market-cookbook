@@ -3,8 +3,8 @@
 directory '<%= @directory %>'
 rackup '<%= @directory %>/config.ru'
 environment '<%= @environment %>'
-pidfile '/var/run/<%= @pidfile_path %>.pid'
-state_path '/var/run/<%= @state_path %>_puma.state'
+pidfile '<%= @pidfile_directory %>/puma.pid'
+state_path '<%= @state_directory %>/puma.state'
 threads 1, 16
 port 8080
 
