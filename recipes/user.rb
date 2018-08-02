@@ -6,5 +6,7 @@ user node[cookbook_name]['user'] do
   comment "#{node[cookbook_name]['user']} user"
   group node[cookbook_name]['group']
   system true
-  shell '/sbin/nologin'
+  manage_home true
+  home "/home/#{node[cookbook_name]['user']}"
+  # shell '/sbin/nologin'
 end
