@@ -9,12 +9,12 @@ template "/etc/systemd/system/puma.service" do
   source "systemd.erb"
   owner user
   group group
-  mode '0644'
+  mode '0755'
   variables app_name: app_name,
             user: user,
             app_directory: "#{install_directory}/BaritoMarket",
-            puma_config_directory: "#{install_directory}/shared/config/puma.#{env}.rb",
-            puma_pidfile_directory: "#{install_directory}/shared/pids/puma.#{env}.pid"
+            puma_config_directory: "#{node[cookbook_name]['puma_config_directory']}/puma.#{env}.rb",
+            puma_pids_directory: "#{node[cookbook_name]['puma_pids_directory']}/puma.#{env}.pid"
   notifies :run, "execute[systemctl-daemon-reload]", :immediately
   notifies :restart, "service[puma]", :delayed
 end

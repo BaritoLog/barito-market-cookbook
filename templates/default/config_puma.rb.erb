@@ -1,14 +1,12 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env puma
 
 directory '<%= @directory %>'
 rackup '<%= @directory %>/config.ru'
 environment '<%= @environment %>'
-pidfile '<%= @pidfile_directory %>/puma.pid'
-state_path '<%= @state_directory %>/puma.state'
+pidfile '<%= @puma_pids_directory %>/puma.pid'
+state_path '<%= @puma_state_directory %>/puma.state'
 threads 1, 16
 port 8080
-
-bind 'tcp://0.0.0.0:8080'
 
 on_restart do
   puts 'On restart...'

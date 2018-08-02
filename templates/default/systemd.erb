@@ -28,7 +28,7 @@ WorkingDirectory=<%= @app_directory %>
 # ExecStart=<WD>/sbin/puma -C config.rb
 # Variant: Use `bundle exec --keep-file-descriptors puma` instead of binstub
 ExecStart=/bin/bash -lc 'bundle exec puma -C <%= @puma_config_directory %>'
-ExecStop=/bin/bash -lc 'bundle exec pumactl -P <%= @puma_pidfile_directory %> stop'
+ExecStop=/bin/bash -lc 'bundle exec pumactl -P <%= @puma_pids_directory %> stop'
 TimeoutSec=15
 
 Restart=on-failure

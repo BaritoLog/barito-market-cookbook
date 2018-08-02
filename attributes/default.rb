@@ -8,6 +8,12 @@ default[cookbook_name]['install_directory'] = "/opt/#{cookbook_name}"
 default[cookbook_name]['release_name'] = Time.now.strftime('%y%m%d%H%M')
 default[cookbook_name]['env'] = 'production'
 
+default[cookbook_name]['puma_directory'] = "#{default[cookbook_name]['install_directory']}/shared/puma"
+default[cookbook_name]['puma_config_directory'] = "#{default[cookbook_name]['puma_directory']}/config"
+default[cookbook_name]['puma_tmp_directory'] = "#{default[cookbook_name]['puma_directory']}/tmp"
+default[cookbook_name]['puma_pids_directory'] = "#{default[cookbook_name]['puma_tmp_directory']}/pids"
+default[cookbook_name]['puma_state_directory'] = "#{default[cookbook_name]['puma_tmp_directory']}/state"
+
 default['postgresql']['version'] = '10'
 default['postgresql']['config_dir'] = "/etc/postgresql/#{node['postgresql']['version']}/main"
 default['postgresql']['hba_file'] = "#{node['postgresql']['config_dir']}/pg_hba.conf"
