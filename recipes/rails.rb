@@ -12,9 +12,9 @@ execute 'setup database' do
   user user
   group group
   command "
-    bundle exec RAILS_ENV=#{env} bin/rake db:create && \
-    bundle exec RAILS_ENV=#{env} bin/rake db:migrate && \
-    bundle exec RAILS_ENV=#{env} bin/rake db:seed && \
+    RAILS_ENV=#{env} bin/rake db:create && \
+    RAILS_ENV=#{env} bin/rake db:migrate && \
+    RAILS_ENV=#{env} bin/rake db:seed && \
   "
   cwd "#{install_directory}/BaritoMarket"
 end

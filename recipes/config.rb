@@ -43,3 +43,10 @@ execute 'copy tps_config.yml & database.yml' do
   command 'cp tps_config.yml.example tps_config.yml && cp database.yml.example database.yml'
   cwd "#{install_directory}/BaritoMarket/config"
 end
+
+directory "#{install_directory}/shared" do
+  owner user
+  group group
+  recursive true
+  action :create
+end

@@ -6,6 +6,7 @@ environment '<%= @environment %>'
 pidfile '/var/run/<%= @pidfile_path %>.pid'
 state_path '/var/run/<%= @state_path %>_puma.state'
 threads 1, 16
+port 8080
 
 bind 'tcp://0.0.0.0:8080'
 
