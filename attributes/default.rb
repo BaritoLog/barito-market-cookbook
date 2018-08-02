@@ -2,24 +2,17 @@ cookbook_name = 'barito_market'
 
 default[cookbook_name]['user'] = cookbook_name
 default[cookbook_name]['group'] = cookbook_name
-default[cookbook_name]['github_repo'] = 'BaritoLog/BaritoMarket'
+default[cookbook_name]['release_name'] = Time.now.strftime('%y%m%d%H%M')
 default[cookbook_name]['barito_market_repo'] = 'https://github.com/BaritoLog/BaritoMarket.git'
 default[cookbook_name]['install_directory'] = "/opt/#{cookbook_name}"
-default[cookbook_name]['release_name'] = Time.now.strftime('%y%m%d%H%M')
 default[cookbook_name]['env'] = 'production'
-
-default[cookbook_name]['puma_directory'] = "#{default[cookbook_name]['install_directory']}/shared/puma"
-default[cookbook_name]['puma_config_directory'] = "#{default[cookbook_name]['puma_directory']}/config"
-default[cookbook_name]['puma_tmp_directory'] = "#{default[cookbook_name]['puma_directory']}/tmp"
-default[cookbook_name]['puma_pids_directory'] = "#{default[cookbook_name]['puma_tmp_directory']}/pids"
-default[cookbook_name]['puma_state_directory'] = "#{default[cookbook_name]['puma_tmp_directory']}/state"
 
 default['postgresql']['version'] = '10'
 default['postgresql']['config_dir'] = "/etc/postgresql/#{node['postgresql']['version']}/main"
+default['postgresql']['data_dir'] = "/var/lib/postgresql/#{node['postgresql']['version']}/main"
+default['postgresql']['external_pid_file'] = "/var/run/postgresql/#{node['postgresql']['version']}-main.pid"
 default['postgresql']['hba_file'] = "#{node['postgresql']['config_dir']}/pg_hba.conf"
 default['postgresql']['ident_file'] = "#{node['postgresql']['config_dir']}/pg_ident.conf"
-default['postgresql']['external_pid_file'] = "/var/run/postgresql/#{node['postgresql']['version']}-main.pid"
-default['postgresql']['data_dir'] = "/var/lib/postgresql/#{node['postgresql']['version']}/main"
 
 default['postgresql']['config'] = {
   'listen_addresses' => '*',
@@ -32,6 +25,12 @@ default['postgresql']['config'] = {
   'track_counts' => 'on',
   'max_connections' => 1000
 }
+
+default[cookbook_name]['puma_directory'] = "#{default[cookbook_name]['install_directory']}/shared/puma"
+default[cookbook_name]['puma_config_directory'] = "#{default[cookbook_name]['puma_directory']}/config"
+default[cookbook_name]['puma_tmp_directory'] = "#{default[cookbook_name]['puma_directory']}/tmp"
+default[cookbook_name]['puma_pids_directory'] = "#{default[cookbook_name]['puma_tmp_directory']}/pids"
+default[cookbook_name]['puma_state_directory'] = "#{default[cookbook_name]['puma_tmp_directory']}/state"
 
 default[cookbook_name]['environment_variables'] = {
   'db_username' => 'barito_market',

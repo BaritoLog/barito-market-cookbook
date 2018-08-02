@@ -1,13 +1,14 @@
 app_name = cookbook_name
-env = node[app_name]['environment_variables']
-release_name = node[cookbook_name]['release_name']
-install_directory = node[cookbook_name]['install_directory']
 user = node[cookbook_name]['user']
 group = node[cookbook_name]['group']
+release_name = node[cookbook_name]['release_name']
+install_directory = node[cookbook_name]['install_directory']
+env = node[app_name]['environment_variables']
 
 directory install_directory do
   owner user
   group group
+  mode '0755'
   recursive true
   action :create
 end
@@ -31,7 +32,7 @@ end
 
 template "#{install_directory}/#{release_name}/config/application.yml" do
   source      'barito_market_application_yml.erb'
-  mode        '0644'
+  mode        '0755'
   owner       user
   group       group
   variables   env
@@ -47,6 +48,7 @@ end
 directory "#{install_directory}/shared" do
   owner user
   group group
+  mode '0755'
   recursive true
   action :create
 end

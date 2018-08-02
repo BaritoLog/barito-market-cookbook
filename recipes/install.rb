@@ -1,7 +1,3 @@
-app_name = cookbook_name
-release_name = node[cookbook_name]['release_name']
-release_file = node[cookbook_name]['release_file']
-
 apt_repository 'brightbox-ruby' do
   uri 'ppa:brightbox/ruby-ng'
 end
