@@ -9,7 +9,7 @@ template "/etc/systemd/system/puma.service" do
   group group
   mode '0644'
   variables app_name: app_name,
-            user: user,
+            user: user
   notifies :run, "execute[systemctl-daemon-reload]", :immediately
   notifies :restart, "service[puma]", :delayed
 end
