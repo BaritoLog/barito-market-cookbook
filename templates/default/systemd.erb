@@ -31,7 +31,7 @@ ExecStart=/bin/bash -lc 'bundle exec puma -C <%= @puma_config_directory %>'
 ExecStop=/bin/bash -lc 'bundle exec pumactl -P <%= @puma_pidfile_directory %> stop'
 TimeoutSec=15
 
-Restart=always
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target

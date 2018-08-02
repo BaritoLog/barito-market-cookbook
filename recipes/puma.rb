@@ -13,7 +13,7 @@ directory "#{install_directory}/shared/config" do
   action :create
 end
 
-directory "#{install_directory}/shared/tmp" do
+directory "#{install_directory}/shared/tmp/pids" do
   owner user
   group group
   recursive true
