@@ -1,3 +1,5 @@
+user = node[cookbook_name]['user']
+group = node[cookbook_name]['group']
 install_directory = node[cookbook_name]['install_directory']
 
 apt_update
@@ -9,7 +11,8 @@ template "/etc/systemd/system/sidekiq.service" do
   owner user
   group group
   mode '0755'
-  variables app_directory: "#{install_directory}/BaritoMarket"
+  variables app_directory: "#{install_directory}/BaritoMarket",
+            user: user
   notifies :run, "execute[systemctl-daemon-reload]", :immediately
   notifies :restart, "service[sidekiq]", :delayed
 end
