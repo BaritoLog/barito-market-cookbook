@@ -1,6 +1,7 @@
 user = node[cookbook_name]['user']
 group = node[cookbook_name]['group']
 install_directory = node[cookbook_name]['install_directory']
+env = node[cookbook_name]['env']
 
 apt_update
 package 'redis-server'
@@ -12,7 +13,8 @@ template "/etc/systemd/system/sidekiq.service" do
   group group
   mode '0755'
   variables app_directory: "#{install_directory}/BaritoMarket",
-            user: user
+            user: user,
+            env: env
   notifies :run, "execute[systemctl-daemon-reload]", :immediately
   notifies :restart, "service[sidekiq]", :delayed
 end
