@@ -1,4 +1,4 @@
-# # encoding: utf-8
+# encoding: utf-8
 
 # Inspec test for recipe barito_market::default
 
@@ -10,8 +10,8 @@ unless os.windows?
   describe user('root') do
     it { should exist }
   end
-  
-  describe user('baritoMarket') do
+
+  describe user('barito_market') do
     it { should exist }
   end
 end
@@ -20,6 +20,9 @@ end
 describe port(80) do
   it { should_not be_listening }
 end
-  describe port(8080) do
-    it { should be_listening }
+describe port(8080) do
+  it { should be_listening }
+end
+describe port(6379) do
+  it { should be_listening }
 end
