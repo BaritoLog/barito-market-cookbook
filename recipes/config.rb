@@ -3,14 +3,17 @@ user = node[cookbook_name]['user']
 group = node[cookbook_name]['group']
 release_name = node[cookbook_name]['release_name']
 install_directory = node[cookbook_name]['install_directory']
+shared_directory = node[cookbook_name]['shared_directory']
 env = node[app_name]['environment_variables']
 
-directory install_directory do
-  owner user
-  group group
-  mode '0755'
-  recursive true
-  action :create
+[install_directory, shared_directory].each do |path|
+  directory path do
+    owner user
+    group group
+    mode '0755'
+    recursive true
+    action :create
+  end
 end
 
 git install_directory do
