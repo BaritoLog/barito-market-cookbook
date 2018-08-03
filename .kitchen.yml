@@ -28,5 +28,3 @@ suites:
         - test/unit/spec
     attributes:
       app_name: "baritoMarket"
-      market_script_location: "/opt/baritoMarket/baritoMarket/run.sh"
-      command_name: "rails server -p 8080"
