@@ -5,6 +5,7 @@ default[cookbook_name]['group'] = cookbook_name
 default[cookbook_name]['release_name'] = Time.now.strftime('%y%m%d%H%M')
 default[cookbook_name]['barito_market_repo'] = 'https://github.com/BaritoLog/BaritoMarket.git'
 default[cookbook_name]['install_directory'] = "/opt/#{cookbook_name}"
+default[cookbook_name]['shared_directory'] = "#{default[cookbook_name]['install_directory']}/shared"
 default[cookbook_name]['env'] = 'production'
 
 default['postgresql']['version'] = '10'
@@ -34,16 +35,29 @@ default[cookbook_name]['puma_state_directory'] = "#{default[cookbook_name]['puma
 
 default[cookbook_name]['environment_variables'] = {
   'db_username' => 'barito_market',
-  'db_name' => 'barito_market_production',
+  'db_host' => 'localhost',
   'db_password' => '123456',
   'db_root_password' => '123456',
   'db_port' => 5432,
-  'db_host' => 'localhost',
   'db_pool' => 5,
   'db_timeout' => 5000,
-  'rack_env' => default[cookbook_name]['env'],
-  'enable_cas_integration' => true,
   'provision_available_instances' => 'yggdrasil,consul,zookeeper,kafka,elasticsearch,barito-flow-producer,barito-flow-consumer,kibana',
   'app_groups' => 'barito',
-  'secret_key_base' => '123456'
+  'market_end_point' => 'http://market.barito.local/',
+  'router_protocol' => 'http',
+  'router_domain' => 'router.barito.local',
+  'viewer_protocol' => 'http',
+  'viewer_domain' => 'viewer.barito.local',
+  'sauron_host' => '127.0.0.1:3000',
+  'container_host' => '127.0.0.1',
+  'container_host_name' => 'barito',
+  'container_private_key' => 'barito',
+  'container_username' => 'ubuntu',
+  'default_consul_port' => '8500',
+  'secret_key_base' => '123456',
+
+  'rack_env' => default[cookbook_name]['env'],
+  'db_name' => 'barito_market_production',
+  'enable_cas_integration' => true,
+  'timestamp_format' => '%d-%m-%Y %H:%M' 
 }
