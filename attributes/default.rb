@@ -4,8 +4,13 @@ default[cookbook_name]['user'] = cookbook_name
 default[cookbook_name]['group'] = cookbook_name
 default[cookbook_name]['release_name'] = Time.now.strftime('%y%m%d%H%M')
 default[cookbook_name]['barito_market_repo'] = 'https://github.com/BaritoLog/BaritoMarket.git'
+default[cookbook_name]['chef_repo'] = 'https://github.com/BaritoLog/chef-repo.git'
 default[cookbook_name]['install_directory'] = "/opt/#{cookbook_name}"
+default[cookbook_name]['chef_repo_directory'] = "/opt/chef-repo/"
+default[cookbook_name]['chef_repo_install_directory'] = "/opt/chef-repo/chef-repo"
+default[cookbook_name]['chef_repo_shared_directory'] = "/opt/chef-repo/shared"
 default[cookbook_name]['shared_directory'] = "#{default[cookbook_name]['install_directory']}/shared"
+default[cookbook_name]['private_keys_directory'] = "#{default[cookbook_name]['shared_directory']}/private_keys"
 default[cookbook_name]['env'] = 'production'
 
 default['postgresql']['version'] = '10'
@@ -34,6 +39,7 @@ default[cookbook_name]['puma_pids_directory'] = "#{default[cookbook_name]['puma_
 default[cookbook_name]['puma_state_directory'] = "#{default[cookbook_name]['puma_tmp_directory']}/state"
 
 default[cookbook_name]['environment_variables'] = {
+  'rails_serve_static_files' => true,
   'db_username' => 'barito_market',
   'db_host' => 'localhost',
   'db_password' => '123456',
@@ -49,10 +55,10 @@ default[cookbook_name]['environment_variables'] = {
   'viewer_protocol' => 'http',
   'viewer_domain' => 'viewer.barito.local',
   'sauron_host' => '127.0.0.1:3000',
-  'container_host' => '127.0.0.1',
-  'container_host_name' => 'barito',
+  'container_private_keys_dir' => "#{default[cookbook_name]['private_keys_directory']}",
   'container_private_key' => 'barito',
   'container_username' => 'ubuntu',
+  'chef_repo_dir' => '/opt/chef-repo',
   'default_consul_port' => '8500',
   'secret_key_base' => '123456',
 

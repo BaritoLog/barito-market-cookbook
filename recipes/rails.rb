@@ -5,8 +5,10 @@ install_directory = node[cookbook_name]['install_directory']
 shared_directory = node[cookbook_name]['shared_directory']
 
 execute 'run bundle install' do
-  command "bundle install --path #{shared_directory}"
-  cwd "#{install_directory}/BaritoMarket"
+  user user
+  group group
+  command "bundle install --path #{shared_directory}/.local"
+  cwd "#{install_directory}/BaritoMarket" 
 end
 
 execute 'setup database' do
