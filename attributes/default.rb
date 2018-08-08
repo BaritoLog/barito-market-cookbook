@@ -58,7 +58,7 @@ default[cookbook_name]['environment_variables'] = {
   'container_private_keys_dir' => "#{default[cookbook_name]['private_keys_directory']}",
   'container_private_key' => 'barito',
   'container_username' => 'ubuntu',
-  'chef_repo_dir' => '/opt/chef-repo',
+  'chef_repo_dir' => "#{default[cookbook_name]['chef_repo_directory']}",
   'default_consul_port' => '8500',
   'secret_key_base' => '123456',
 
