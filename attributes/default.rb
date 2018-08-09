@@ -22,11 +22,9 @@ default['postgresql']['ident_file'] = "#{node['postgresql']['config_dir']}/pg_id
 
 default['postgresql']['config'] = {
   'listen_addresses' => '*',
-  'unix_socket_directories' => '/var/run/postgresql',
   'timezone' => 'Asia/Jakarta',
   'log_timezone' => 'Asia/Jakarta',
   'dynamic_shared_memory_type' => 'posix',
-  'checkpoint_segments' => 16,
   'log_line_prefix' => '%t [%p]: [%l-1] user=%u,db=%d,app=%a,client=%h ',
   'track_counts' => 'on',
   'max_connections' => 1000
