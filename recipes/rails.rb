@@ -22,3 +22,7 @@ execute 'setup database' do
   "
   cwd "#{install_directory}/BaritoMarket"
 end
+
+service 'puma' do
+  subscribes :restart, 'execute[setup database]', :delayed
+end
