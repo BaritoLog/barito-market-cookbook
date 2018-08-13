@@ -4,13 +4,13 @@ group = node[cookbook_name]['group']
 release_name = node[cookbook_name]['release_name']
 install_directory = node[cookbook_name]['install_directory']
 shared_directory = node[cookbook_name]['shared_directory']
+chef_repo_placeholder = node[cookbook_name]['chef_repo_placeholder']
 chef_repo_directory = node[cookbook_name]['chef_repo_directory']
-chef_repo_install_directory = node[cookbook_name]['chef_repo_install_directory']
 chef_repo_shared_directory = node[cookbook_name]['chef_repo_shared_directory']
 private_keys_directory = node[cookbook_name]['private_keys_directory']
 env = node[app_name]['environment_variables']
 
-[install_directory, shared_directory, private_keys_directory, chef_repo_directory, chef_repo_install_directory, chef_repo_shared_directory].each do |path|
+[install_directory, shared_directory, private_keys_directory, chef_repo_placeholder, chef_repo_directory, chef_repo_shared_directory].each do |path|
   directory path do
     owner user
     group group
