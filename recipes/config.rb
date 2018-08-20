@@ -39,7 +39,7 @@ end
 
 template "#{install_directory}/#{release_name}/config/application.yml" do
   source      'barito_market_application_yml.erb'
-  mode        '0755'
+  mode        '0644'
   owner       user
   group       group
   variables   env
