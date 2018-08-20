@@ -59,6 +59,8 @@ default[cookbook_name]['environment_variables'] = {
   'chef_repo_dir' => "#{default[cookbook_name]['chef_repo_directory']}",
   'default_consul_port' => '8500',
   'secret_key_base' => '123456',
+  'datadog_api_key' => 'datadogapikey',
+  'datadog_integration' => 'true',
 
   'rack_env' => default[cookbook_name]['env'],
   'db_name' => 'barito_market_production',
