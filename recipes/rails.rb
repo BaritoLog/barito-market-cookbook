@@ -26,3 +26,7 @@ end
 service 'puma' do
   subscribes :restart, 'execute[setup database]', :delayed
 end
+
+service 'sidekiq' do
+  subscribes :restart, 'execute[setup database]', :delayed
+end
