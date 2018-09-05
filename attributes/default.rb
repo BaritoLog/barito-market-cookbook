@@ -61,9 +61,13 @@ default[cookbook_name]['environment_variables'] = {
   'secret_key_base' => '123456',
   'datadog_api_key' => 'datadogapikey',
   'datadog_integration' => 'true',
+  'pathfinder_host' => '127.0.0.1:3000',
+  'pathfinder_cluster' => 'barito',
+  'pathfinder_image' => '18.04',
+  'pathfinder_token' => '',
 
   'rack_env' => default[cookbook_name]['env'],
   'db_name' => 'barito_market_production',
   'enable_cas_integration' => true,
-  'timestamp_format' => '%d-%m-%Y %H:%M' 
+  'timestamp_format' => '%d-%m-%Y %H:%M'
 }
