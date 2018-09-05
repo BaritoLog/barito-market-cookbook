@@ -6,7 +6,7 @@ Restart=on-failure
 RestartSec=2
 StartLimitInterval=50
 StartLimitBurst=10
-ExecStart=/bin/bash -lc 'RAILS_ENV=<%= @env %> bundle exec sidekiq'
+ExecStart=/bin/bash -lc 'RAILS_ENV=<%= @env %> bundle exec sidekiq -C <%= @sidekiq_conf %>'
 User=<%= @user %>
 WorkingDirectory=<%= @app_directory %>
 

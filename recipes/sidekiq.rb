@@ -14,7 +14,8 @@ template "/etc/systemd/system/sidekiq.service" do
   mode '0755'
   variables app_directory: "#{install_directory}/BaritoMarket",
             user: user,
-            env: env
+            env: env,
+            sidekiq_conf: "#{install_directory}/BaritoMarket/config/sidekiq.yaml"
   notifies :run, "execute[systemctl-daemon-reload]", :immediately
   notifies :restart, "service[sidekiq]", :delayed
 end
