@@ -2,6 +2,7 @@ app_name = cookbook_name
 user = node[cookbook_name]['user']
 group = node[cookbook_name]['group']
 release_name = node[cookbook_name]['release_name']
+ssh_directory = node[cookbook_name]['ssh_directory']
 install_directory = node[cookbook_name]['install_directory']
 shared_directory = node[cookbook_name]['shared_directory']
 chef_repo_placeholder = node[cookbook_name]['chef_repo_placeholder']
@@ -10,7 +11,7 @@ chef_repo_shared_directory = node[cookbook_name]['chef_repo_shared_directory']
 private_keys_directory = node[cookbook_name]['private_keys_directory']
 env = node[app_name]['environment_variables']
 
-[install_directory, shared_directory, private_keys_directory, chef_repo_placeholder, chef_repo_directory, chef_repo_shared_directory].each do |path|
+[ssh_directory, install_directory, shared_directory, private_keys_directory, chef_repo_placeholder, chef_repo_directory, chef_repo_shared_directory].each do |path|
   directory path do
     owner user
     group group
@@ -18,6 +19,12 @@ env = node[app_name]['environment_variables']
     recursive true
     action :create
   end
+end
+
+file "#{ssh_directory}/known_hosts" do
+  mode '0644'
+  owner user
+  group group
 end
 
 git install_directory do
