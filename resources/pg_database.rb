@@ -9,7 +9,7 @@
 property :database,  String, name_property: true
 property :user,      String, default: 'postgres', required: true
 property :encoding,  String, default: 'UTF-8'
-property :locale,    String, default: 'en_US.UTF-8'
+property :locale,    String, default: 'C.UTF-8'
 
 action :create do
   createdb = 'createdb'
