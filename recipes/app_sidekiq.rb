@@ -1,3 +1,11 @@
+#
+# Cookbook:: barito-market-cookbook
+# Recipe:: app_sidekiq
+#
+# Copyright:: 2018, BaritoLog.
+#
+#
+
 user = node[cookbook_name]['user']
 group = node[cookbook_name]['group']
 install_directory = node[cookbook_name]['install_directory']
@@ -11,7 +19,7 @@ template "/etc/systemd/system/sidekiq.service" do
   source "sidekiq.service.erb"
   owner user
   group group
-  mode '0755'
+  mode '0644'
   variables app_directory: "#{install_directory}/BaritoMarket",
             user: user,
             env: env,

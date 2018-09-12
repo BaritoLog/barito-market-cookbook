@@ -1,8 +1,15 @@
-app_name = cookbook_name
+#
+# Cookbook:: barito-market-cookbook
+# Recipe:: db
+#
+# Copyright:: 2018, BaritoLog.
+#
+#
+
 version = node['postgresql']['version']
 env = node[cookbook_name]['environment_variables']
 
-barito_market_server_install "Postgresql #{version} Server Install" do
+barito_market_pg_install "Postgresql #{version} Server Install" do
   version            version
   hba_file           node['postgresql']['hba_file']
   ident_file         node['postgresql']['ident_file']
@@ -11,7 +18,7 @@ barito_market_server_install "Postgresql #{version} Server Install" do
   action :install
 end
 
-barito_market_config "Configuring Postgres Installation" do
+barito_market_pg_config "Configuring Postgres Installation" do
   version            version
   data_directory     node['postgresql']['data_dir']
   hba_file           node['postgresql']['hba_file']
@@ -21,7 +28,7 @@ barito_market_config "Configuring Postgres Installation" do
   action :modify
 end
 
-barito_market_user "Adding user to Postgres Installation" do
+barito_market_pg_user "Adding user to Postgres Installation" do
   user env['db_username']
   password env['db_password']
   superuser true
@@ -31,16 +38,17 @@ barito_market_user "Adding user to Postgres Installation" do
   action :create
 end
 
-barito_market_access "Configuring Access" do
+barito_market_pg_access "Configuring Access" do
   version version
   access_type 'host'
   access_db env['db_name']
   access_user env['db_username']
-  access_addr 'localhost'
-  access_method 'password'
+  access_addr '0.0.0.0/0'
+  access_method 'md5'
 end
 
-barito_market_pg_gem 'Install PG Gem' do
-  client_version version
-  version '1.0.0'
+barito_market_pg_database "Create Database" do
+  database env['db_name']
+  user env['db_username']
 end
+

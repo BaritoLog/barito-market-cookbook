@@ -1,3 +1,11 @@
+#
+# Cookbook:: barito-market-cookbook
+# Attribute:: default
+#
+# Copyright:: 2018, BaritoLog.
+#
+#
+
 cookbook_name = 'barito_market'
 
 default[cookbook_name]['user'] = cookbook_name
@@ -15,7 +23,9 @@ default[cookbook_name]['shared_directory'] = "#{default[cookbook_name]['install_
 default[cookbook_name]['private_keys_directory'] = "#{default[cookbook_name]['shared_directory']}/private_keys"
 default[cookbook_name]['env'] = 'production'
 
-default['postgresql']['version'] = '10'
+# PostgreSQL config
+pg_version = '10'
+default['postgresql']['version'] = pg_version
 default['postgresql']['config_dir'] = "/etc/postgresql/#{node['postgresql']['version']}/main"
 default['postgresql']['data_dir'] = "/var/lib/postgresql/#{node['postgresql']['version']}/main"
 default['postgresql']['external_pid_file'] = "/var/run/postgresql/#{node['postgresql']['version']}-main.pid"
@@ -32,12 +42,14 @@ default['postgresql']['config'] = {
   'max_connections' => 1000
 }
 
+# Puma config
 default[cookbook_name]['puma_directory'] = "#{default[cookbook_name]['install_directory']}/shared/puma"
 default[cookbook_name]['puma_config_directory'] = "#{default[cookbook_name]['puma_directory']}/config"
 default[cookbook_name]['puma_tmp_directory'] = "#{default[cookbook_name]['puma_directory']}/tmp"
 default[cookbook_name]['puma_pids_directory'] = "#{default[cookbook_name]['puma_tmp_directory']}/pids"
 default[cookbook_name]['puma_state_directory'] = "#{default[cookbook_name]['puma_tmp_directory']}/state"
 
+# Environment variables
 default[cookbook_name]['environment_variables'] = {
   'rails_serve_static_files' => true,
   'db_username' => 'barito_market',

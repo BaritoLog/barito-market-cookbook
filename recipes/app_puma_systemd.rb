@@ -1,3 +1,11 @@
+#
+# Cookbook:: barito-market-cookbook
+# Recipe:: app_puma_systemd
+#
+# Copyright:: 2018, BaritoLog.
+#
+#
+
 app_name = cookbook_name
 release_name = node[cookbook_name]['release_name']
 user = node[cookbook_name]['user']
@@ -6,10 +14,10 @@ install_directory = node[cookbook_name]['install_directory']
 env = node[cookbook_name]['env']
 
 template "/etc/systemd/system/puma.service" do
-  source "systemd.erb"
+  source "puma_systemd.erb"
   owner user
   group group
-  mode '0755'
+  mode '0644'
   variables app_name: app_name,
             user: user,
             app_directory: "#{install_directory}/BaritoMarket",

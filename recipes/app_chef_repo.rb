@@ -1,3 +1,11 @@
+#
+# Cookbook:: barito-market-cookbook
+# Recipe:: app_chef_repo
+#
+# Copyright:: 2018, BaritoLog.
+#
+#
+
 user = node[cookbook_name]['user']
 group = node[cookbook_name]['group']
 chef_repo_placeholder = node[cookbook_name]['chef_repo_placeholder']

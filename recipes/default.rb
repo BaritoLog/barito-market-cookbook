@@ -1,9 +1,7 @@
-include_recipe 'barito_market::user'
-include_recipe 'barito_market::install'
-include_recipe 'barito_market::config'
-include_recipe 'barito_market::postgresql'
-include_recipe 'barito_market::rails'
-include_recipe 'barito_market::sidekiq'
-include_recipe 'barito_market::puma'
-include_recipe 'barito_market::systemd'
-include_recipe 'barito_market::chef_repo'
+#
+# Cookbook:: barito-market-cookbook
+# Recipe:: default
+#
+# Copyright:: 2018, BaritoLog.
+#
+#
