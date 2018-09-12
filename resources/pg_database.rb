@@ -1,3 +1,11 @@
+#
+# Cookbook:: barito-market-cookbook
+# Resource:: pg_database
+#
+# Copyright:: 2018, BaritoLog.
+#
+#
+
 property :database,  String, name_property: true
 property :user,      String, default: 'postgres', required: true
 property :encoding,  String, default: 'UTF-8'
@@ -5,7 +13,7 @@ property :locale,    String, default: 'en_US.UTF-8'
 
 action :create do
   createdb = 'createdb'
-  createdb << " -U #{new_resource.user}"
+  createdb << " -U postgres"
   createdb << " -E #{new_resource.encoding}" if new_resource.encoding
   createdb << " -l #{new_resource.locale}" if new_resource.locale
   createdb << " -O #{new_resource.user}"
@@ -13,7 +21,7 @@ action :create do
 
   bash "Create Database #{new_resource.database}" do
     code createdb
-    user new_resource.user
+    user 'postgres'
     not_if { database_exists?(new_resource.user, new_resource.database) }
   end
 end

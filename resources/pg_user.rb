@@ -1,3 +1,11 @@
+#
+# Cookbook:: barito-market-cookbook
+# Resource:: pg_user
+#
+# Copyright:: 2018, BaritoLog.
+#
+#
+
 property :user, String, required: true
 property :superuser, [true, false], default: false
 property :createdb, [true, false], default: false

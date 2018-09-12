@@ -1,3 +1,11 @@
+#
+# Cookbook:: barito-market-cookbook
+# Resource:: pg_access
+#
+# Copyright:: 2018, BaritoLog.
+#
+#
+
 property :version, String, required: true, default: '10'
 property :access_type,   String, required: true, default: 'local'
 property :access_db,     String, required: true, default: 'all'
@@ -12,7 +20,7 @@ action :grant do
       source 'pg_hba.conf.erb'
       owner 'postgres'
       group 'postgres'
-      mode '0600'
+      mode '0644'
       variables(
         comment: "#{new_resource.access_user} access",
         type: new_resource.access_type,

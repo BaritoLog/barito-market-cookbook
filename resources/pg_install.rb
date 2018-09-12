@@ -1,3 +1,11 @@
+#
+# Cookbook:: barito-market-cookbook
+# Resource:: pg_install
+#
+# Copyright:: 2018, BaritoLog.
+#
+#
+
 property :version, String, default: '10'
 property :hba_file
 property :ident_file
