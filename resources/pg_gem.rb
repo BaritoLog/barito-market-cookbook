@@ -1,6 +1,14 @@
+#
+# Cookbook:: barito-market-cookbook
+# Resource:: pg_gem
+#
+# Copyright:: 2018, BaritoLog.
+#
+#
+
 property :client_version, String, default: '10'
 # gem options
-property :version, [String, nil], default: '0.21.0'
+property :version, [String, nil], default: '1.1.2'
 property :clear_sources, [true, false]
 property :include_default_source, [true, false]
 property :gem_binary, String
@@ -9,9 +17,17 @@ property :timeout, Integer, default: 300
 property :source, String
 
 action :install do
+  apt_repository 'postgresql_org_repository' do
+    uri 'https://download.postgresql.org/pub/repos/apt/'
+    components   ['main', new_resource.version.to_s]
+    distribution "#{node['lsb']['codename']}-pgdg"
+    key 'https://download.postgresql.org/pub/repos/apt/ACCC4CF8.asc'
+    cache_rebuild true
+  end
+  
   package %W[
     libpq5 libpq-dev postgresql-client-#{new_resource.client_version}
-    libgmp-dev postgresql-#{new_resource.client_version}
+    libgmp-dev
   ]
   build_essential 'essentially essential' do
     compile_time true

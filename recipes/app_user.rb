@@ -1,3 +1,11 @@
+#
+# Cookbook:: barito-market-cookbook
+# Recipe:: app_user
+#
+# Copyright:: 2018, BaritoLog.
+#
+#
+
 group node[cookbook_name]['group'] do
   system true
 end

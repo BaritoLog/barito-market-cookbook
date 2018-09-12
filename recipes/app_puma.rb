@@ -1,3 +1,11 @@
+#
+# Cookbook:: barito-market-cookbook
+# Recipe:: app_puma
+#
+# Copyright:: 2018, BaritoLog.
+#
+#
+
 app_name = cookbook_name
 user = node[cookbook_name]['user']
 group = node[cookbook_name]['group']
@@ -20,12 +28,14 @@ gem_package 'puma'
 end
 
 template "#{puma_config_directory}/puma.#{env}.rb" do
-  source "config_puma.rb.erb"
+  source "puma_config.rb.erb"
   owner user
   group group
-  mode '0755'
+  mode '0644'
   variables directory: "#{install_directory}/BaritoMarket",
             environment: node[cookbook_name]['env'],
             puma_pids_directory: puma_pids_directory,
             puma_state_directory: puma_state_directory
 end
+
+include_recipe 'barito_market::app_puma_systemd'

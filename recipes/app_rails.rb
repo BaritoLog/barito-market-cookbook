@@ -1,3 +1,11 @@
+#
+# Cookbook:: barito-market-cookbook
+# Recipe:: app_rails
+#
+# Copyright:: 2018, BaritoLog.
+#
+#
+
 user = node[cookbook_name]['user']
 group = node[cookbook_name]['group']
 env = node[cookbook_name]['env']
@@ -15,7 +23,6 @@ execute 'setup database' do
   user user
   group group
   command "
-    RAILS_ENV=#{env} bin/rake db:create && \
     RAILS_ENV=#{env} bin/rake db:migrate && \
     RAILS_ENV=#{env} bin/rake assets:precompile
   "
