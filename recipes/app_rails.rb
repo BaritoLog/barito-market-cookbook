@@ -6,6 +6,7 @@
 #
 #
 
+app_name = cookbook_name
 user = node[cookbook_name]['user']
 group = node[cookbook_name]['group']
 env = node[cookbook_name]['env']
@@ -16,7 +17,7 @@ execute 'run bundle install' do
   user user
   group group
   command "bundle install --path #{shared_directory}/.local --without development:test"
-  cwd "#{install_directory}/BaritoMarket" 
+  cwd "#{install_directory}/BaritoMarket"
 end
 
 execute 'setup database' do
@@ -29,7 +30,7 @@ execute 'setup database' do
   cwd "#{install_directory}/BaritoMarket"
 end
 
-service 'puma' do
+service "#{app_name}" do
   subscribes :restart, 'execute[setup database]', :delayed
 end
 

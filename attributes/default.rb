@@ -48,6 +48,7 @@ default[cookbook_name]['puma_config_directory'] = "#{default[cookbook_name]['pum
 default[cookbook_name]['puma_tmp_directory'] = "#{default[cookbook_name]['puma_directory']}/tmp"
 default[cookbook_name]['puma_pids_directory'] = "#{default[cookbook_name]['puma_tmp_directory']}/pids"
 default[cookbook_name]['puma_state_directory'] = "#{default[cookbook_name]['puma_tmp_directory']}/state"
+default[cookbook_name]['puma_port'] = 8080
 
 # Environment variables
 default[cookbook_name]['environment_variables'] = {
