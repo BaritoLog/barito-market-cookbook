@@ -82,5 +82,9 @@ default[cookbook_name]['environment_variables'] = {
   'rack_env' => default[cookbook_name]['env'],
   'db_name' => 'barito_market_production',
   'enable_cas_integration' => true,
-  'timestamp_format' => '%d-%m-%Y %H:%M'
+  'timestamp_format' => '%d-%m-%Y %H:%M',
+
+  'newrelic_license_key' => '',
+  'newrelic_app_name' => cookbook_name,
+  'newrelic_agent_enabled' => false
 }
