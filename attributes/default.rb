@@ -78,6 +78,8 @@ default[cookbook_name]['environment_variables'] = {
   'pathfinder_cluster' => 'barito',
   'pathfinder_image' => '18.04',
   'pathfinder_token' => '',
+  'redis_cache_host' => 'localhost:6379',
+  'redis_cache_db' => '1',
 
   'rack_env' => default[cookbook_name]['env'],
   'db_name' => 'barito_market_production',
