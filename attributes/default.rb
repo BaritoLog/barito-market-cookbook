@@ -89,5 +89,7 @@ default[cookbook_name]['environment_variables'] = {
   'newrelic_license_key' => '',
   'newrelic_app_name' => cookbook_name,
   'newrelic_agent_enabled' => false,
-  'default_app_max_tps' => '20'
+  'default_app_max_tps' => '20',
+  'default_log_retention_days' => 30,
+  'es_curator_client_key' => 'abcd1234'
 }

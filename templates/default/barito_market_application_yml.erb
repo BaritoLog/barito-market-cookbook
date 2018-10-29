@@ -32,6 +32,8 @@ NEWRELIC_AGENT_ENABLED:      <%= @newrelic_agent_enabled %>
 REDIS_CACHE_HOST:            '<%= @redis_cache_host %>'
 REDIS_CACHE_DB:              '<%= @redis_cache_db %>'
 DEFAULT_APP_MAX_TPS:         '<%= @default_app_max_tps %>'
+DEFAULT_LOG_RETENTION_DAYS:  '<%= @default_log_retention_days %>'
+ES_CURATOR_CLIENT_KEY:       '<%= @es_curator_client_key %>'
 
 <%= @rack_env %>:
   RAILS_ENV:                 '<%= @rack_env %>'
