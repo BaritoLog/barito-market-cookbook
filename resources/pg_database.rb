@@ -17,6 +17,10 @@ action :create do
   createdb << " -E #{new_resource.encoding}" if new_resource.encoding
   createdb << " -l #{new_resource.locale}" if new_resource.locale
   createdb << " -O #{new_resource.user}"
+
+  # see https://stackoverflow.com/questions/18870775/how-to-change-the-template-database-collection-coding-on-postgresql
+  createdb << " -T template0"
+
   createdb << " #{new_resource.database}"
 
   bash "Create Database #{new_resource.database}" do
