@@ -19,12 +19,13 @@ barito_market_pg_install "Postgresql #{version} Server Install" do
 end
 
 barito_market_pg_config "Configuring Postgres Installation" do
-  version            version
-  data_directory     node['postgresql']['data_dir']
-  hba_file           node['postgresql']['hba_file']
-  ident_file         node['postgresql']['ident_file']
-  external_pid_file  node['postgresql']['external_pid_file']
-  additional_config  node['postgresql']['config']
+  version               version
+  data_directory        node['postgresql']['data_dir']
+  hba_file              node['postgresql']['hba_file']
+  ident_file            node['postgresql']['ident_file']
+  external_pid_file     node['postgresql']['external_pid_file']
+  stats_temp_directory  node['postgresql']['stats_temp_directory']
+  additional_config     node['postgresql']['config']
   action :modify
 end
 

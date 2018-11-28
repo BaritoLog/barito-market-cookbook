@@ -29,6 +29,7 @@ default['postgresql']['version'] = pg_version
 default['postgresql']['config_dir'] = "/etc/postgresql/#{node['postgresql']['version']}/main"
 default['postgresql']['data_dir'] = "/var/lib/postgresql/#{node['postgresql']['version']}/main"
 default['postgresql']['external_pid_file'] = "/var/run/postgresql/#{node['postgresql']['version']}-main.pid"
+default['postgresql']['stats_temp_directory'] = "/var/lib/postgresql/10/main/pg_stat_tmp"
 default['postgresql']['hba_file'] = "#{node['postgresql']['config_dir']}/pg_hba.conf"
 default['postgresql']['ident_file'] = "#{node['postgresql']['config_dir']}/pg_ident.conf"
 
