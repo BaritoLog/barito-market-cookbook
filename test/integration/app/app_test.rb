@@ -76,6 +76,10 @@ unless os.windows?
     its('link_path') { should eq '/opt/barito_market/shared/log' }
   end
 
+  describe file('/etc/logrotate.d/barito-market') do
+    its('mode') { should cmp '0644' }
+  end
+
   describe systemd_service('sidekiq') do
     it { should be_installed }
     it { should be_enabled }

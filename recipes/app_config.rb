@@ -80,3 +80,10 @@ execute 'copy tps_config.yml & database.yml' do
   cwd "#{install_directory}/BaritoMarket/config"
 end
 
+template '/etc/logrotate.d/barito-market' do
+  source 'logrotate/barito-market.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  variables directory: "#{shared_log_directory}"
+end
