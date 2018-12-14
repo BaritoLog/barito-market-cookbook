@@ -32,6 +32,12 @@ unless os.windows?
     its('group') { should eq 'barito_market' }
   end
 
+  describe directory('/opt/barito_market/shared/log') do
+    its('mode') { should cmp '0755' }
+    its('owner') { should eq 'barito_market' }
+    its('group') { should eq 'barito_market' }
+  end
+
   describe directory('/opt/chef-repo') do
     its('mode') { should cmp '0755' }
     its('owner') { should eq 'barito_market' }
@@ -64,6 +70,10 @@ unless os.windows?
 
   describe file('/opt/barito_market/BaritoMarket/config/database.yml') do
     its('mode') { should cmp '0644' }
+  end
+
+  describe file('/opt/barito_market/BaritoMarket/log') do
+    its('link_path') { should eq '/opt/barito_market/shared/log' }
   end
 
   describe systemd_service('sidekiq') do

@@ -20,6 +20,7 @@ default[cookbook_name]['chef_repo_placeholder'] = "/opt/chef-repo/"
 default[cookbook_name]['chef_repo_directory'] = "/opt/chef-repo/chef-repo"
 default[cookbook_name]['chef_repo_shared_directory'] = "/opt/chef-repo/shared"
 default[cookbook_name]['shared_directory'] = "#{default[cookbook_name]['install_directory']}/shared"
+default[cookbook_name]['shared_log_directory'] = "#{default[cookbook_name]['install_directory']}/shared/log"
 default[cookbook_name]['private_keys_directory'] = "#{default[cookbook_name]['shared_directory']}/private_keys"
 default[cookbook_name]['env'] = 'production'
 

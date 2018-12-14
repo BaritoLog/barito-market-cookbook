@@ -13,13 +13,14 @@ release_name = node[cookbook_name]['release_name']
 ssh_directory = node[cookbook_name]['ssh_directory']
 install_directory = node[cookbook_name]['install_directory']
 shared_directory = node[cookbook_name]['shared_directory']
+shared_log_directory = node[cookbook_name]['shared_log_directory']
 chef_repo_placeholder = node[cookbook_name]['chef_repo_placeholder']
 chef_repo_directory = node[cookbook_name]['chef_repo_directory']
 chef_repo_shared_directory = node[cookbook_name]['chef_repo_shared_directory']
 private_keys_directory = node[cookbook_name]['private_keys_directory']
 env = node[app_name]['environment_variables']
 
-[ssh_directory, install_directory, shared_directory, private_keys_directory, chef_repo_placeholder, chef_repo_directory, chef_repo_shared_directory].each do |path|
+[ssh_directory, install_directory, shared_directory, shared_log_directory, private_keys_directory, chef_repo_placeholder, chef_repo_directory, chef_repo_shared_directory].each do |path|
   directory path do
     owner user
     group group
@@ -45,6 +46,18 @@ git install_directory do
   action :sync
 end
 
+directory "#{install_directory}/#{release_name}/log" do
+  recursive true
+  action :delete
+end
+
+link "#{install_directory}/#{release_name}/log" do
+  to "#{shared_log_directory}"
+  action :create
+  user user
+  group group
+end
+
 link "#{install_directory}/BaritoMarket"  do
   to "#{install_directory}/#{release_name}"
   action :create
@@ -67,10 +80,3 @@ execute 'copy tps_config.yml & database.yml' do
   cwd "#{install_directory}/BaritoMarket/config"
 end
 
-directory "#{install_directory}/shared" do
-  owner user
-  group group
-  mode '0755'
-  recursive true
-  action :create
-end
