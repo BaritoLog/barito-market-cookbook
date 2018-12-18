@@ -23,13 +23,23 @@ platforms:
       product_version: latest
 
 suites:
-  - name: app
+  - name: master
     run_list:
       - recipe[barito_market::db]
       - recipe[barito_market::app]
+    driver_config:
+      customize:
+        memory: 1024
+      network:
+        - ['private_network', {ip: '192.168.33.10'}]
     verifier:
       inspec_tests:
         - test/integration/app
         - test/unit/spec
     attributes:
       app_name: "baritoMarket"
+      postgresql:
+        replication: true
+        db_replication_username: 'repluser'
+        db_replication_addr: '192.168.33.11'
+        db_replication_password: 'password1234'

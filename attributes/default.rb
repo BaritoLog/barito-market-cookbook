@@ -33,6 +33,7 @@ default['postgresql']['external_pid_file'] = "/var/run/postgresql/#{node['postgr
 default['postgresql']['stats_temp_directory'] = "/var/lib/postgresql/#{node['postgresql']['version']}/main/pg_stat_tmp"
 default['postgresql']['hba_file'] = "#{node['postgresql']['config_dir']}/pg_hba.conf"
 default['postgresql']['ident_file'] = "#{node['postgresql']['config_dir']}/pg_ident.conf"
+default['postgresql']['max_connections'] = 1000
 
 default['postgresql']['config'] = {
   'listen_addresses' => '*',
@@ -41,8 +42,20 @@ default['postgresql']['config'] = {
   'dynamic_shared_memory_type' => 'posix',
   'log_line_prefix' => '%t [%p]: [%l-1] user=%u,db=%d,app=%a,client=%h ',
   'track_counts' => 'on',
-  'max_connections' => 1000
+  'max_connections' => node['postgresql']['max_connections']
 }
+
+# replication
+default['postgresql']['replication']                  = false
+default['postgresql']['db_master_addr']               = '192.168.0.10'
+default['postgresql']['db_replication_username']      = 'replication_user'
+default['postgresql']['db_replication_addr']          = '192.168.0.11'
+default['postgresql']['db_replication_password']      = 'password1234'
+default['postgresql']['wal_level']                    = 'hot_standby'
+default['postgresql']['archive_mode']                 = 'on'
+default['postgresql']['archive_command']              = 'cd .'
+default['postgresql']['max_wal_senders']              = '8'
+default['postgresql']['hot_standby']                  = 'on'
 
 # Puma config
 default[cookbook_name]['puma_directory'] = "#{default[cookbook_name]['install_directory']}/shared/puma"
