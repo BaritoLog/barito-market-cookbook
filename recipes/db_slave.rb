@@ -10,13 +10,11 @@ version = node['postgresql']['version']
 env = node[cookbook_name]['environment_variables']
 additional_config = node['postgresql']['config']
 
-if node['postgresql']['replication'] == true
-  replication_config = {
-    'hot_standby' => node['postgresql']['hot_standby']
-  }
-  node.override['postgresql']['config'] = additional_config.merge(replication_config)
-  additional_config = node.override['postgresql']['config']
-end
+replication_config = {
+  'hot_standby' => node['postgresql']['hot_standby']
+}
+node.override['postgresql']['config'] = additional_config.merge(replication_config)
+additional_config = node['postgresql']['config']
 
 barito_market_pg_install "Postgresql #{version} Server Install" do
   version            version
