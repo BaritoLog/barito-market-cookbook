@@ -45,11 +45,11 @@ default['postgresql']['config'] = {
   'max_connections' => node['postgresql']['max_connections']
 }
 
-# replication
+## Replication config
 default['postgresql']['replication']                  = false
-default['postgresql']['db_master_addr']               = '192.168.0.10'
+default['postgresql']['db_master_addr']               = '10.0.10.10'
+default['postgresql']['db_replication_addr']          = '10.0.10.11'
 default['postgresql']['db_replication_username']      = 'replication_user'
-default['postgresql']['db_replication_addr']          = '192.168.0.11'
 default['postgresql']['db_replication_password']      = 'password1234'
 default['postgresql']['wal_level']                    = 'hot_standby'
 default['postgresql']['archive_mode']                 = 'on'

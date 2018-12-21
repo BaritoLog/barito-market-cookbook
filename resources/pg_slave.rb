@@ -6,15 +6,14 @@
 #
 #
 
-property :version, String
+property :version, String, default: '10'
+property :db_master_address, String, required: true
+property :db_replication_username, String, required: true
+property :db_replication_password, String, required: true
 property :standby_mode, String, required: true, default: 'on'
-property :db_master_address, String
-property :db_replication_username, String
-property :db_replication_password, String
-property :cookbook, String
 
 action :create do
-  bash 'pg_basebackup from db master' do
+  bash 'initial slave buildup from master' do
     code <<-EOH
       sudo service postgresql stop
       sudo -u postgres rm -rf /var/lib/postgresql/#{new_resource.version}/main
@@ -27,7 +26,7 @@ action :create do
 
   path = "/var/lib/postgresql/#{new_resource.version}/main/recovery.conf"
   template path do
-    cookbook new_resource.cookbook
+    cookbook 'barito_market'
     source 'recovery.conf.erb'
     owner 'postgres'
     group 'postgres'
@@ -43,5 +42,4 @@ action :create do
   service "postgresql" do
     action :nothing
   end
-
 end

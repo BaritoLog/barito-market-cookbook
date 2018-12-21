@@ -38,11 +38,11 @@ barito_market_pg_config "Configuring Postgres Installation" do
   action :modify
 end
 
-barito_market_pg_slave "Create Recovery Config" do
+barito_market_pg_slave "Configure Slave" do
   version                 version
-  standby_mode            node['postgresql']['standby_mode']
   db_master_address       node['postgresql']['db_master_address']
   db_replication_username node['postgresql']['db_replication_username']
   db_replication_password node['postgresql']['db_replication_password']
+  standby_mode            node['postgresql']['standby_mode']
   action :create
 end
