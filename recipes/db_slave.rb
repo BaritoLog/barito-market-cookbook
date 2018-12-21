@@ -44,3 +44,8 @@ barito_market_pg_slave "Configure Slave" do
   standby_mode            node['postgresql']['standby_mode']
   action :create
 end
+
+service "postgresql" do
+  action :nothing
+  supports :status => true, :start => true, :restart => true, :stop => true
+end

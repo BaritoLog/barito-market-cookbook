@@ -9,6 +9,7 @@
 version = node['postgresql']['version']
 env = node[cookbook_name]['environment_variables']
 additional_config = node['postgresql']['config']
+accesses = []
 
 if node['postgresql']['replication'] == true
   replication_config = {
@@ -38,6 +39,7 @@ barito_market_pg_config "Configuring Postgres Installation" do
   external_pid_file     node['postgresql']['external_pid_file']
   stats_temp_directory  node['postgresql']['stats_temp_directory']
   additional_config     additional_config
+  notifies :restart, "service[postgresql]", :delayed
   action :modify
 end
 
@@ -51,14 +53,13 @@ barito_market_pg_user "Adding user to Postgres Installation" do
   action :create
 end
 
-barito_market_pg_access "Configuring Access" do
-  version version
-  access_type 'host'
-  access_db env['db_name']
-  access_user env['db_username']
-  access_addr '0.0.0.0/0'
-  access_method 'md5'
-end
+accesses << {
+  'type' => 'host',
+  'db' => env['db_name'],
+  'user' => env['db_username'],
+  'address' => '0.0.0.0/0',
+  'method' => 'md5'
+}
 
 if node['postgresql']['replication'] == true
   barito_market_pg_user "Creating Replication User" do
@@ -68,18 +69,19 @@ if node['postgresql']['replication'] == true
     action :create
   end
 
-  barito_market_pg_access "Configuring Replication Access" do
-    version version
-    access_type 'host'
-    access_db 'replication'
-    access_user node['postgresql']['db_replication_username']
-    access_addr "#{node['postgresql']['db_replication_addr']}/32"
-    access_method 'trust'
-  end
+  accesses << {
+    'type' => 'host',
+    'db' => 'replication',
+    'user' => node['postgresql']['db_replication_username'],
+    'address' => "#{node['postgresql']['db_replication_addr']}/32",
+    'method' => 'trust'
+  }
+end
 
-  service "postgresql" do
-    action :restart
-  end
+barito_market_pg_access "Configuring Access" do
+  version version
+  accesses accesses
+  notifies :restart, "service[postgresql]", :delayed
 end
 
 barito_market_pg_database "Create Database" do
@@ -87,3 +89,7 @@ barito_market_pg_database "Create Database" do
   user env['db_username']
 end
 
+service "postgresql" do
+  action :nothing
+  supports :status => true, :start => true, :restart => true, :stop => true
+end
