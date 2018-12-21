@@ -26,7 +26,7 @@ action :create do
   bash "Create Database #{new_resource.database}" do
     code createdb
     user 'postgres'
-    not_if { database_exists?(new_resource.user, new_resource.database) }
+    not_if { database_exists?('postgres', new_resource.database) }
   end
 end
 
