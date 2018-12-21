@@ -18,7 +18,7 @@ if node['postgresql']['replication'] == true
     'archive_command' => node['postgresql']['archive_command']
   }
   node.override['postgresql']['config'] = additional_config.merge(replication_config)
-  additional_config = node.override['postgresql']['config']
+  additional_config = node['postgresql']['config']
 end
 
 barito_market_pg_install "Postgresql #{version} Server Install" do
