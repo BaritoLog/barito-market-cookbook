@@ -64,11 +64,8 @@ if node['postgresql']['replication'] == true
   barito_market_pg_user "Creating Replication User" do
     user node['postgresql']['db_replication_username']
     password node['postgresql']['db_replication_password']
-    createrole true
     replication true
-    login true
     action :create
-    not_if "psql -U postgres -c \"\\\du\" | grep #{node['postgresql']['db_replication_username']}"
   end
 
   barito_market_pg_access "Configuring Replication Access" do
