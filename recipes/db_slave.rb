@@ -38,7 +38,7 @@ end
 
 barito_market_pg_slave "Configure Slave" do
   version                 version
-  db_master_address       node['postgresql']['db_master_address']
+  db_master_addr          node['postgresql']['db_master_addr']
   db_replication_username node['postgresql']['db_replication_username']
   db_replication_password node['postgresql']['db_replication_password']
   standby_mode            node['postgresql']['standby_mode']

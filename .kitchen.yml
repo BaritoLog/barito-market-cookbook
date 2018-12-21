@@ -58,6 +58,6 @@ suites:
     attributes:
       app_name: "baritoMarket"
       postgresql:
-        db_master_address: '192.168.33.10'
+        db_master_addr: '192.168.33.10'
         db_replication_username: 'repluser'
         db_replication_password: 'password1234'

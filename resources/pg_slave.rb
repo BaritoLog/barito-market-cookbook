@@ -7,7 +7,7 @@
 #
 
 property :version, String, default: '10'
-property :db_master_address, String, required: true
+property :db_master_addr, String, required: true
 property :db_replication_username, String, required: true
 property :db_replication_password, String, required: true
 property :standby_mode, String, required: true, default: 'on'
@@ -17,7 +17,7 @@ action :create do
     code <<-EOH
       sudo service postgresql stop
       sudo -u postgres rm -rf /var/lib/postgresql/#{new_resource.version}/main
-      sudo -u postgres pg_basebackup -h #{new_resource.db_master_address} -D /var/lib/postgresql/#{new_resource.version}/main -U #{new_resource.db_replication_username} -v -P
+      sudo -u postgres pg_basebackup -h #{new_resource.db_master_addr} -D /var/lib/postgresql/#{new_resource.version}/main -U #{new_resource.db_replication_username} -v -P
       touch /var/log/fake.txt
     EOH
     timeout 18000
@@ -33,7 +33,7 @@ action :create do
     mode '0644'
     variables(
       standby_mode:     new_resource.standby_mode,
-      primary_conninfo: "host=#{new_resource.db_master_address} port=5432 user=#{new_resource.db_replication_username} password=#{new_resource.db_replication_password}",
+      primary_conninfo: "host=#{new_resource.db_master_addr} port=5432 user=#{new_resource.db_replication_username} password=#{new_resource.db_replication_password}",
       trigger_file:     '/tmp/postgresql.trigger.5432'
     )
     notifies :start, 'service[postgresql]', :immediately
