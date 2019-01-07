@@ -108,5 +108,6 @@ default[cookbook_name]['environment_variables'] = {
   'default_log_retention_days' => 30,
   'es_curator_client_key' => 'abcd1234',
   'global_viewer' => 'false',
-  'global_viewer_role' => 'global-viewer'
+  'global_viewer_role' => 'global-viewer',
+  'redis_key_expiry' => 10
 }
