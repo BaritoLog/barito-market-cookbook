@@ -106,5 +106,7 @@ default[cookbook_name]['environment_variables'] = {
   'newrelic_agent_enabled' => false,
   'default_app_max_tps' => '20',
   'default_log_retention_days' => 30,
-  'es_curator_client_key' => 'abcd1234'
+  'es_curator_client_key' => 'abcd1234',
+  'global_viewer' => 'false',
+  'global_viewer_role' => 'global-viewer'
 }
