@@ -65,8 +65,8 @@ link "#{install_directory}/BaritoMarket"  do
   group group
 end
 
-# Keep only 5 latest deployments (exclude shared folder)
-execute 'ls -1t -Ishared | tail -n +6 | xargs rm -rf' do
+# Keep only 5 latest deployments (avoid removing all other files or folders)
+execute 'ls -1r | egrep \'^[[:digit:]]{10}$\' | tail -n +6 | xargs rm -rf' do
   user user
   group group
   cwd "#{install_directory}"
