@@ -65,6 +65,13 @@ link "#{install_directory}/BaritoMarket"  do
   group group
 end
 
+# Keep only 5 latest deployments (avoid removing all other files or folders)
+execute 'ls -1r | egrep \'^[[:digit:]]{10}$\' | tail -n +6 | xargs rm -rf' do
+  user user
+  group group
+  cwd "#{install_directory}"
+end
+
 template "#{install_directory}/#{release_name}/config/application.yml" do
   source      'barito_market_application_yml.erb'
   mode        '0644'
