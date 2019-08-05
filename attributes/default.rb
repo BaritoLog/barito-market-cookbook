@@ -109,5 +109,6 @@ default[cookbook_name]['environment_variables'] = {
   'es_curator_client_key' => 'abcd1234',
   'global_viewer' => 'false',
   'global_viewer_role' => 'global-viewer',
-  'redis_key_expiry' => 10
+  'redis_key_expiry' => 10,
+  'dafault_per_page' => 30
 }
