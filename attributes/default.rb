@@ -110,5 +110,7 @@ default[cookbook_name]['environment_variables'] = {
   'global_viewer' => 'false',
   'global_viewer_role' => 'global-viewer',
   'redis_key_expiry' => 10,
-  'dafault_per_page' => 30
+  'dafault_per_page' => 30,
+  'datadog_host' => 'localhost',
+  'datadog_port' => '8125',
 }
