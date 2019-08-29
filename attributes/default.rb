@@ -112,5 +112,5 @@ default[cookbook_name]['environment_variables'] = {
   'redis_key_expiry' => 10,
   'dafault_per_page' => 30,
   'datadog_host' => 'localhost',
-  'datadog_port' => '8125',
+  'datadog_port' => '8125'
 }
