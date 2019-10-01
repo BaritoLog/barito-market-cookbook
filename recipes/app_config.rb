@@ -96,6 +96,6 @@ template '/etc/logrotate.d/barito-market' do
 end
 
 execute "reschedule daily crontab" do
-  command "sed -i 's/25 6   * * */25 20   * * */' /etc/crontab"
-  only_if "grep '25 6   * * *' /etc/crontab 2>&1 >/dev/null"
+  command "sed -i 's/25 6 * * */25 20  * * */' /etc/crontab"
+  only_if "grep 'cron.daily' /etc/crontab 2>&1 > /dev/null"
 end
