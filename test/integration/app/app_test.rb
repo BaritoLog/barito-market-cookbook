@@ -98,3 +98,7 @@ end
 describe port(8080) do
   it { should be_listening }
 end
+
+describe file('/etc/crontab') do
+  its('content') {should match /^25 20\W{6}/}
+end
