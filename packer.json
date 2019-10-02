@@ -22,7 +22,7 @@
     {
       "type": "chef-solo",
       "cookbook_paths": ["{{user `cookbook_paths`}}"],
-      "run_list": ["recipe[barito-market::app]"]
+      "run_list": ["recipe[barito_market::app]"]
     }
   ]
 }
