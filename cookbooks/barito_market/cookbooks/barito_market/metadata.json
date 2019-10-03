@@ -1,0 +1,45 @@
+{
+  "name": "barito_market",
+  "description": "Installs/Configures barito market",
+  "long_description": "Installs/Configures barito market",
+  "maintainer": "GO-JEK Engineering",
+  "maintainer_email": "baritolog@go-jek.com",
+  "license": "Apache-2.0",
+  "platforms": {
+  },
+  "dependencies": {
+    "zipfile": ">= 0.0.0",
+    "tar": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.1.1",
+  "source_url": "https://github.com/BaritoLog/barito-market-cookbook",
+  "issues_url": "https://github.com/BaritoLog/barito-market-cookbook/issues",
+  "privacy": false,
+  "chef_versions": [
+    [
+      ">= 14.1.1"
+    ]
+  ],
+  "ohai_versions": [
+
+  ],
+  "gems": [
+
+  ]
+}
