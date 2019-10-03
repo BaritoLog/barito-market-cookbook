@@ -4,7 +4,7 @@ maintainer_email 'baritolog@go-jek.com'
 license 'Apache-2.0'
 description 'Installs/Configures barito market'
 long_description 'Installs/Configures barito market'
-version '0.1.1'
+version '0.2.0'
 chef_version '>= 14.1.1' if respond_to?(:chef_version)
 
 issues_url 'https://github.com/BaritoLog/barito-market-cookbook/issues'
